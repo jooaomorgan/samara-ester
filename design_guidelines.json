@@ -1,0 +1,82 @@
+{
+  "project_name": "Cherry Vibes",
+  "locale": "pt-BR",
+  "app_type": "e-commerce (storefront) + admin dashboard",
+  "brand_identity": {
+    "concept": "Noite de coquetel - Romantic, sophisticated, nocturnal fashion & beauty e-commerce",
+    "primary_dark_wine": "#2E0014",
+    "deep_cherry_red": "#B3122F",
+    "cherry_blossom_soft": "#E0A3B0",
+    "warm_off_white": "#FAF7F2",
+    "card_light_bg": "#FFFFFF",
+    "dark_border": "rgba(255, 255, 255, 0.12)",
+    "light_border": "rgba(46, 0, 20, 0.1)",
+    "text_light": "#FAF7F2",
+    "text_dark": "#1C1217",
+    "text_muted_dark": "#9E828E",
+    "text_muted_light": "#72656B"
+  },
+  "typography": {
+    "heading_font": "Cormorant Garamond, Italiana, Bodoni Moda, serif",
+    "heading_style": "font-light tracking-wide uppercase-or-capitalize",
+    "subtitle_font": "Jost, sans-serif",
+    "subtitle_style": "uppercase tracking-[0.25em] text-xs font-light",
+    "body_font": "Jost, sans-serif",
+    "body_style": "font-normal leading-relaxed text-sm sm:text-base",
+    "mono_font": "JetBrains Mono, monospace"
+  },
+  "symbols_and_motifs": {
+    "monogram": "CV monogram in delicate white thin line",
+    "hero_motif": "Thin-line cherry branch/blossoms crossing top-right/bottom-left hero corner",
+    "brand_icons": "Cocktail glass with cherry and red bow, thin-line cherry blossom",
+    "favorites_icon": "Animated cherry & bow icon on toggle",
+    "provisional_badge": "Badge 'Exemplo' with subtle cherry border on mock products"
+  },
+  "layout_architecture": {
+    "hero_section": "Dark Wine (#2E0014) with kinetic typography, masked line reveal, and subtle cherry branch overlay",
+    "category_doors": "4 doors: Roupas, Acessórios, Maquiagem, Cosméticos in dark wine card containers with subtle hover spotlight",
+    "product_grids": "Warm Off-White (#FAF7F2) sections for maximum legibility and true-to-color clothing/makeup display",
+    "editorial_marquee": "Slow, smooth drifting marquee text on wine background: 'CHERRY VIBES • NOITE DE COQUETEL • MODA & BELEZA • EDICÃO LIMITADA'",
+    "footer_section": "Dark Wine (#2E0014) with high-contrast thin-line grid borders and brand signature"
+  },
+  "image_urls": {
+    "hero_editorial": "https://images.unsplash.com/photo-1760497925673-d2f56ed4d8f9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwzfHxicmF6aWxpYW4lMjBmYXNoaW9uJTIwbW9kZWwlMjBkYXJrJTIwZWRpdG9yaWFsJTIwZHJlc3MlMjBzdHVkaW98ZW58MHx8fHwxNzkyNDE1MzI5fDA&ixlib=rb-4.1.0&q=85",
+    "clothing_women": "https://images.pexels.com/photos/20809213/pexels-photo-20809213.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "clothing_men": "https://images.unsplash.com/photo-1779911915514-b36bcec0bddc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwyfHxicmF6aWxpYW4lMjBmYXNoaW9uJTIwbW9kZWwlMjBkYXJrJTIwZWRpdG9yaWFsJTIwZHJlc3MlMjBzdHVkaW98ZW58MHx8fHwxNzkyNDE1MzI5fDA&ixlib=rb-4.1.0&q=85",
+    "makeup_lipstick": "https://images.pexels.com/photos/30263622/pexels-photo-30263622.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "cosmetics_bottle": "https://images.unsplash.com/photo-1590785069862-343f908422d7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBtYWtldXAlMjBsaXBzdGljayUyMGNvc21ldGljcyUyMGRhcmslMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc5MjQxNTMyOXww&ixlib=rb-4.1.0&q=85",
+    "accessories_dark": "https://images.pexels.com/photos/4355155/pexels-photo-4355155.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "component_guidelines": {
+    "header": {
+      "type": "Sticky glassmorphic navbar",
+      "style": "bg-[#2E0014]/80 backdrop-blur-md border-b border-white/10 text-[#FAF7F2]",
+      "elements": ["CV Logo", "Navigation (Feminino, Masculino, Maquiagem, Cosméticos)", "Search trigger", "Favorites counter with cherry icon", "Cart drawer trigger"]
+    },
+    "product_card": {
+      "light_theme": "bg-white border border-[#2E0014]/10 rounded-none shadow-sm hover:shadow-md transition-all duration-300 group",
+      "features": ["Provisional badge 'Exemplo'", "Quick add button", "Color/shade swatches", "Spotlight image hover zoom"]
+    },
+    "product_details": {
+      "adaptive_selectors": {
+        "clothes": "Size picker (PP, P, M, G, GG) + Color dots",
+        "makeup": "Shade swatches with name preview (Ex: 'Vinho Império', 'Cereja Velvet')",
+        "cosmetics": "Volume selector (30ml, 50ml, 100ml)"
+      }
+    },
+    "admin_panel": {
+      "route": "/admin",
+      "mode": "Operate Mode - Functional density, high contrast, clean data tables, search filters, modal product edit, stock management, order status badges",
+      "style": "Clean dark/light toggleable panel with compact grids and quick actions"
+    }
+  },
+  "motion_and_effects": {
+    "lenis_scroll": "Smooth momentum scrolling enabled",
+    "framer_motion": "Staggered scroll reveals on product cards, line-mask reveal on hero text",
+    "hover_effects": "Subtle image scale (1.03x), border glow in #B3122F"
+  },
+  "testing_requirements": {
+    "data_testid_rule": "ALL interactive and key informational elements MUST include a data-testid attribute in kebab-case format (e.g. data-testid='hero-cta-button', data-testid='product-card-1', data-testid='cart-drawer-toggle')",
+    "file_extension": "JavaScript (.js and .jsx files) as set up in /app/frontend/src"
+  }
+}

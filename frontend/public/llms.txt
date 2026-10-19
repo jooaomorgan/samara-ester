@@ -1,0 +1,17 @@
+# Cherry Vibes
+
+> Loja virtual brasileira de moda feminina e masculina, acessórios, maquiagem e cosméticos. Site em português do Brasil.
+
+A loja está em fase de montagem (Fase 1). Os produtos exibidos são peças de exemplo, marcadas como "Exemplo"; compras ainda não podem ser finalizadas.
+
+## Páginas
+
+- /: página inicial, com as quatro áreas da loja e as novidades
+- /roupas: roupas femininas e masculinas, com filtros por tamanho, cor e preço
+- /acessorios: acessórios
+- /maquiagem: maquiagem, com seleção de tom
+- /cosmeticos: cosméticos, com volume, ingredientes e modo de uso
+- /sobre: sobre a marca
+- /trocas-e-devolucoes: política de trocas (texto provisório)
+- /privacidade: privacidade e LGPD (texto provisório)
+- /contato: contato
