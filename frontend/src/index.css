@@ -192,6 +192,7 @@
   .marquee-track:hover { animation-play-state: paused; }
 
   .clip-arch { clip-path: inset(0 round 999px 999px 0 0); }
+  .ease-premium { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
 }
 
 .lenis.lenis-smooth { scroll-behavior: auto !important; }

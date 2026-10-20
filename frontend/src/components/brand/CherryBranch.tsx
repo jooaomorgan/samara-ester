@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 
-export function CherryBranch({ className = "" }: { className?: string }) {
+export function CherryBranch({ className = "", ...rest }: { className?: string } & Record<`data-${string}`, string>) {
   const reduce = useReducedMotion();
   const draw = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -19,7 +19,7 @@ export function CherryBranch({ className = "" }: { className?: string }) {
     </motion.g>
   );
   return (
-    <svg viewBox="0 0 600 420" className={className} aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 600 420" className={className} aria-hidden="true" focusable="false" {...rest}>
       <motion.path d="M620 20C520 60 440 150 400 250c-20 50-40 90-90 130" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" variants={draw} custom={0} initial="hidden" animate="show" />
       <motion.path d="M470 150c-40-10-80 0-120 30" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" variants={draw} custom={1} initial="hidden" animate="show" />
       <motion.path d="M405 240c30 10 50 40 55 80" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" variants={draw} custom={2} initial="hidden" animate="show" />

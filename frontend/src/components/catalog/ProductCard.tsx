@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import { ExampleBadge, ProductImage } from "../brand/ProductImage";
 import { FavoriteButton } from "../brand/CherryIcon";
-import { Reveal } from "../motion/Reveal";
+import { useBatchReveal } from "../motion/Reveal";
 import { formatBRL } from "../../lib/format";
 import type { Product } from "../../types/catalog";
 
 const categoryLabel: Record<Product["category"], string> = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos" };
 
-export function ProductCard({ product, index = 0, priority = false }: { product: Product; index?: number; priority?: boolean }) {
+export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
   const swatches = product.options.find((o) => o.key === "cor" || o.key === "tom")?.values.filter((v) => v.swatch) ?? [];
   const soldOut = product.variants.every((v) => v.stock === 0);
   return (
-    <Reveal as="li" delay={(index % 4) * 0.06} className="group relative">
+    <li data-reveal="" className="group relative">
       <Link to={`/produto/${product.slug}`} className="block" data-testid={`product-card-${product.id}`}>
         <div className="relative overflow-hidden bg-cream-2">
           <div className="transition-transform duration-700 ease-out group-hover:scale-[1.03]">
@@ -37,11 +37,12 @@ export function ProductCard({ product, index = 0, priority = false }: { product:
         )}
       </Link>
       <FavoriteButton productId={product.id} name={product.name} className="absolute right-3 top-3" />
-    </Reveal>
+    </li>
   );
 }
 
-export function ProductGrid({ products, emptyMessage, children }: { products: Product[]; emptyMessage?: string; children?: React.ReactNode }) {
+export function ProductGrid({ products, emptyMessage, children, animate = false }: { products: Product[]; emptyMessage?: string; children?: React.ReactNode; animate?: boolean }) {
+  const ref = useBatchReveal<HTMLUListElement>(animate ? products.length : 0);
   if (products.length === 0) {
     return (
       <div className="border border-dashed border-[var(--line-light)] px-6 py-16 text-center" data-testid="product-grid-empty">
@@ -52,8 +53,8 @@ export function ProductGrid({ products, emptyMessage, children }: { products: Pr
     );
   }
   return (
-    <ul className="grid grid-cols-2 gap-x-4 gap-y-10 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4" data-testid="product-grid">
-      {products.map((p, i) => <ProductCard key={p.id} product={p} index={i} priority={i < 2} />)}
+    <ul ref={ref} className="grid grid-cols-2 gap-x-4 gap-y-10 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4" data-testid="product-grid">
+      {products.map((p, i) => <ProductCard key={p.id} product={p} priority={i < 2} />)}
     </ul>
   );
 }

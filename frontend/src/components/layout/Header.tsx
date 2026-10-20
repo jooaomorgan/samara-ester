@@ -50,7 +50,7 @@ export function Header() {
     navigate(`/busca?q=${encodeURIComponent(q)}`);
   };
 
-  const iconBtn = "relative grid h-11 w-11 place-items-center text-cream transition-colors duration-200 hover:text-blossom";
+  const iconBtn = "relative grid h-10 w-10 sm:h-11 sm:w-11 place-items-center text-cream transition-colors duration-200 hover:text-blossom";
 
   return (
     <header className={`theme-dark sticky top-0 z-40 border-b transition-[background-color,border-color] duration-300 ${scrolled ? "border-[var(--line-dark)] bg-wine/85 backdrop-blur-xl" : "border-transparent bg-wine"}`} data-testid="site-header">
@@ -74,7 +74,7 @@ export function Header() {
             ))}
           </ul>
         </nav>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0 sm:gap-1">
           <button type="button" className={iconBtn} onClick={() => setSearchOpen((v) => !v)} aria-expanded={searchOpen} aria-controls="busca-rapida" aria-label="Buscar" data-testid="search-toggle-button">
             {searchOpen ? <X className="h-5 w-5" strokeWidth={1.5} /> : <Search className="h-5 w-5" strokeWidth={1.5} />}
           </button>

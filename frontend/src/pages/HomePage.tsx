@@ -17,8 +17,8 @@ export default function HomePage() {
     <>
       <Seo title="A noite pede cereja" description="Cherry Vibes: roupas femininas e masculinas, acessórios, maquiagem e cosméticos. Loja virtual em fase de montagem, com peças de exemplo." />
       <Hero />
-      <Marquee />
       <CategoryDoors categories={categories} />
+      <Marquee />
 
       <section id="novidades" className="bg-cream-2" aria-labelledby="novidades-title" data-testid="new-arrivals">
         <div className="container-x py-16 md:py-24">
@@ -30,7 +30,7 @@ export default function HomePage() {
             <Link to="/busca" className="link-underline text-xs uppercase tracking-[0.18em]" data-testid="see-all-link">Ver tudo</Link>
           </Reveal>
           <div className="mt-10">
-            <ProductGrid products={arrivals} />
+            <ProductGrid products={arrivals} animate />
           </div>
         </div>
       </section>

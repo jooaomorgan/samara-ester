@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 import { useLocation } from "react-router-dom";
+import { ScrollTrigger, gsap } from "../lib/motion";
 
 export function useSmoothScroll() {
   const { pathname, hash } = useLocation();
@@ -8,14 +9,12 @@ export function useSmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-    let frame = 0;
-    const raf = (time: number) => {
-      lenis.raf(time);
-      frame = requestAnimationFrame(raf);
-    };
-    frame = requestAnimationFrame(raf);
+    lenis.on("scroll", ScrollTrigger.update);
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
     return () => {
-      cancelAnimationFrame(frame);
+      gsap.ticker.remove(tick);
       lenis.destroy();
     };
   }, []);
@@ -29,5 +28,6 @@ export function useSmoothScroll() {
       }
     }
     window.scrollTo({ top: 0, behavior: "auto" });
+    ScrollTrigger.refresh();
   }, [pathname, hash]);
 }

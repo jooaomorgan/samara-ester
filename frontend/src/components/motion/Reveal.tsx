@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { createElement, useLayoutEffect, useRef, type ReactNode } from "react";
+import { DUR, MOTION_OK, ScrollTrigger, gsap } from "../../lib/motion";
 
 interface RevealProps {
   children: ReactNode;
@@ -9,19 +10,39 @@ interface RevealProps {
 }
 
 export function Reveal({ children, delay = 0, className = "", as = "div" }: RevealProps) {
-  const reduce = useReducedMotion();
-  const Tag = motion[as];
-  return (
-    <Tag
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </Tag>
-  );
+  const ref = useRef<HTMLElement>(null);
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.matchMedia().add(MOTION_OK, () => {
+        gsap.fromTo(ref.current, { autoAlpha: 0, y: 16 }, {
+          autoAlpha: 1, y: 0, duration: DUR.base, delay, ease: "premium",
+          scrollTrigger: { trigger: ref.current, start: "top 88%", once: true },
+        });
+      });
+    }, ref);
+    return () => ctx.revert();
+  }, [delay]);
+  return createElement(as, { ref, className }, children);
+}
+
+export function useBatchReveal<T extends HTMLElement>(count: number) {
+  const ref = useRef<T>(null);
+  useLayoutEffect(() => {
+    if (!count || !ref.current) return;
+    const ctx = gsap.context((self) => {
+      gsap.matchMedia().add(MOTION_OK, () => {
+        const items = self.selector!("[data-reveal]") as HTMLElement[];
+        gsap.set(items, { autoAlpha: 0, y: 16 });
+        ScrollTrigger.batch(items, {
+          start: "top 90%",
+          once: true,
+          onEnter: (batch) => gsap.to(batch, { autoAlpha: 1, y: 0, duration: DUR.base, ease: "premium", stagger: 0.08, overwrite: true }),
+        });
+      });
+    }, ref);
+    return () => ctx.revert();
+  }, [count]);
+  return ref;
 }
 
 export function SplitLines({ lines, className = "", delay = 0 }: { lines: ReactNode[]; className?: string; delay?: number }) {
@@ -34,7 +55,7 @@ export function SplitLines({ lines, className = "", delay = 0 }: { lines: ReactN
             className="block"
             initial={reduce ? false : { y: "110%" }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.9, delay: delay + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: DUR.slow, delay: delay + i * 0.1, ease: [0.4, 0, 0.2, 1] }}
           >
             {line}
           </motion.span>
