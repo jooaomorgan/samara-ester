@@ -8,7 +8,7 @@ import { AdminHeader } from "./AdminLayout";
 import { phase2 } from "./AdminProducts";
 
 const categories: { value: CategorySlug; label: string }[] = [
-  { value: "roupas", label: "Roupas" }, { value: "acessorios", label: "Acessórios" }, { value: "maquiagem", label: "Maquiagem" }, { value: "cosmeticos", label: "Cosméticos" },
+  { value: "roupas", label: "Roupas" }, { value: "acessorios", label: "Acessórios" }, { value: "maquiagem", label: "Maquiagem" }, { value: "cosmeticos", label: "Cosméticos" }, { value: "calcados", label: "Calçados" },
 ];
 
 function Field({ id, label, hint, children }: { id: string; label: string; hint?: string; children: React.ReactNode }) {
@@ -62,7 +62,7 @@ export default function AdminProductForm() {
             <Field id="p-name" label="Nome"><input id="p-name" value={name} onChange={(e) => setName(e.target.value)} required className={input} data-testid="admin-form-name" /></Field>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field id="p-price" label="Preço (R$)"><input id="p-price" type="number" min="0" step="0.01" inputMode="decimal" value={price} onChange={(e) => setPrice(e.target.value)} required className={input} data-testid="admin-form-price" /></Field>
-              {category === "roupas" && (
+              {(category === "roupas" || category === "calcados") && (
                 <Field id="p-gender" label="Para quem">
                   <select id="p-gender" className={input} defaultValue={existing?.gender ?? "feminino"} data-testid="admin-form-gender"><option value="feminino">Feminino</option><option value="masculino">Masculino</option><option value="unissex">Unissex</option></select>
                 </Field>
@@ -78,6 +78,13 @@ export default function AdminProductForm() {
                 <Field id="p-sizes" label="Tamanhos" hint="Separe por vírgula. Ex.: PP, P, M, G, GG"><input id="p-sizes" className={input} defaultValue="PP, P, M, G, GG" data-testid="admin-form-sizes" /></Field>
                 <Field id="p-colors" label="Cores" hint="Ex.: Vinho, Preto, Cereja"><input id="p-colors" className={input} data-testid="admin-form-colors" /></Field>
                 <p className="text-xs text-ink-muted">O estoque é informado por combinação de tamanho e cor na tela de Estoque.</p>
+              </>
+            )}
+            {category === "calcados" && (
+              <>
+                <Field id="p-shoe-sizes" label="Numeração" hint="Separe por vírgula. Ex.: 34, 35, 36, 37, 38, 39"><input id="p-shoe-sizes" className={input} data-testid="admin-form-shoe-sizes" /></Field>
+                <Field id="p-shoe-colors" label="Cores" hint="Ex.: Preto, Vinho, Off-white"><input id="p-shoe-colors" className={input} data-testid="admin-form-shoe-colors" /></Field>
+                <p className="text-xs text-ink-muted">O estoque de calçados será informado por combinação de numeração e cor.</p>
               </>
             )}
             {category === "acessorios" && (

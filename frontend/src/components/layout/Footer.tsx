@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Logo } from "../brand/Logo";
 
 const columns = [
-  { title: "Loja", links: [["Roupas", "/roupas"], ["Acessórios", "/acessorios"], ["Maquiagem", "/maquiagem"], ["Cosméticos", "/cosmeticos"]] },
+  { title: "Loja", links: [["Roupas", "/roupas"], ["Acessórios", "/acessorios"], ["Maquiagem", "/maquiagem"], ["Cosméticos", "/cosmeticos"], ["Calçados", "/calcados"]] },
   { title: "Ajuda", links: [["Como comprar", "/#como-comprar"], ["Trocas e devoluções", "/trocas-e-devolucoes"], ["Contato", "/contato"], ["Favoritos", "/favoritos"]] },
   { title: "Cherry Vibes", links: [["Sobre", "/sobre"], ["Privacidade e LGPD", "/privacidade"], ["Painel da loja", "/admin"]] },
 ];
@@ -14,7 +14,7 @@ export function Footer() {
         <div className="max-w-sm">
           <Logo />
           <p className="mt-6 text-sm text-cream/70">
-            Roupas, acessórios, maquiagem e cosméticos escolhidos para brilhar à meia-luz. Loja em fase de montagem; os produtos exibidos são exemplos.
+            Moda, beleza e calçados escolhidos para brilhar à meia-luz. Loja em fase de montagem; os produtos exibidos são exemplos.
           </p>
         </div>
         {columns.map((col) => (
@@ -23,7 +23,7 @@ export function Footer() {
             <ul className="mt-5 space-y-3">
               {col.links.map(([label, href]) => (
                 <li key={href}>
-                  <Link to={href} className="link-underline inline-block py-1 text-sm text-cream/90" data-testid={`footer-link-${href.replace(/[^a-z]/g, "") || "home"}`}>
+                  <Link to={href} className="link-underline inline-block py-2 text-sm text-cream/90" data-testid={`footer-link-${href.replace(/[^a-z]/g, "") || "home"}`}>
                     {label}
                   </Link>
                 </li>

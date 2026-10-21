@@ -15,7 +15,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Seo title="A noite pede cereja" description="Cherry Vibes: roupas femininas e masculinas, acessórios, maquiagem e cosméticos. Loja virtual em fase de montagem, com peças de exemplo." />
+      <Seo title="A noite pede cereja" description="Cherry Vibes: moda feminina e masculina, acessórios, maquiagem, cosméticos e calçados. Loja virtual em fase de montagem, com peças de exemplo." />
       <Hero />
       <CategoryDoors categories={categories} />
       <Marquee />

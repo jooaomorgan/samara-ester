@@ -15,7 +15,7 @@ import { catalogService } from "../services/catalog";
 import { formatBRL } from "../lib/format";
 import type { OptionKey, Product } from "../types/catalog";
 
-const categoryName: Record<Product["category"], string> = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos" };
+const categoryName: Record<Product["category"], string> = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos", calcados: "Calçados" };
 
 function ProductView({ product }: { product: Product }) {
   const reduce = useReducedMotion();

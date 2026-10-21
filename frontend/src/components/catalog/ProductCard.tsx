@@ -5,7 +5,7 @@ import { useBatchReveal } from "../motion/Reveal";
 import { formatBRL } from "../../lib/format";
 import type { Product } from "../../types/catalog";
 
-const categoryLabel: Record<Product["category"], string> = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos" };
+const categoryLabel: Record<Product["category"], string> = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos", calcados: "Calçados" };
 
 export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
   const swatches = product.options.find((o) => o.key === "cor" || o.key === "tom")?.values.filter((v) => v.swatch) ?? [];
@@ -14,7 +14,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
     <li data-reveal="" className="group relative">
       <Link to={`/produto/${product.slug}`} className="block" data-testid={`product-card-${product.id}`}>
         <div className="relative overflow-hidden bg-cream-2">
-          <div className="transition-transform duration-700 ease-out group-hover:scale-[1.03]">
+          <div className="product-card-image-motion">
             <ProductImage image={product.images[0]} priority={priority} />
           </div>
           {product.isExample && <ExampleBadge className="absolute left-3 top-3 bg-cream/90" />}
@@ -41,13 +41,13 @@ export function ProductCard({ product, priority = false }: { product: Product; p
   );
 }
 
-export function ProductGrid({ products, emptyMessage, children, animate = false }: { products: Product[]; emptyMessage?: string; children?: React.ReactNode; animate?: boolean }) {
+export function ProductGrid({ products, emptyMessage, emptyHint, children, animate = false }: { products: Product[]; emptyMessage?: string; emptyHint?: string; children?: React.ReactNode; animate?: boolean }) {
   const ref = useBatchReveal<HTMLUListElement>(animate ? products.length : 0);
   if (products.length === 0) {
     return (
       <div className="border border-dashed border-[var(--line-light)] px-6 py-16 text-center" data-testid="product-grid-empty">
         <p className="font-serif text-2xl">{emptyMessage ?? "Nenhuma peça encontrada."}</p>
-        <p className="mt-2 text-sm text-ink-muted">Tente limpar os filtros ou buscar por outro termo.</p>
+        <p className="mt-2 text-sm text-ink-muted">{emptyHint ?? "Tente limpar os filtros ou buscar por outro termo."}</p>
         {children}
       </div>
     );
