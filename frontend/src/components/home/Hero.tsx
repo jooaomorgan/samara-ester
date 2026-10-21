@@ -19,12 +19,12 @@ export function Hero() {
 
       <div className="container-x relative grid min-h-[calc(100svh-72px)] grid-cols-1 items-end gap-6 pb-10 pt-8 lg:grid-cols-12 lg:items-center lg:pb-24 lg:pt-28">
         <motion.div style={{ y: textY }} className="lg:col-span-7">
-          <p className="eyebrow text-blossom">Moda feminina e masculina<span className="hidden sm:inline"> · Maquiagem · Cosméticos</span></p>
+          <p className="eyebrow text-blossom">Moda e beleza<span className="hidden sm:inline"> · Feminino e masculino · Calçados</span></p>
           <h1 className="display mt-4 text-[clamp(3rem,10vw,9.5rem)] text-cream lg:mt-6" data-testid="hero-title">
             <SplitLines lines={["A noite", <>pede <em className="font-light italic text-blossom">cereja</em>.</>]} delay={0.15} />
           </h1>
           <motion.p initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }} className="mt-5 max-w-md text-base text-cream/75 md:mt-8 md:text-lg">
-            Roupas, acessórios, maquiagem e cosméticos escolhidos para brilhar à meia-luz.
+            Moda feminina e masculina, acessórios, maquiagem, cosméticos e calçados para brilhar à meia-luz.
           </motion.p>
           <motion.div initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.5, ease: [0.4, 0, 0.2, 1] }} className="mt-8 flex flex-wrap gap-3 md:mt-10">
             <Link to="/#novidades" className="btn btn-cherry" data-testid="hero-cta-novidades">Ver novidades</Link>

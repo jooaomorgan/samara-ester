@@ -13,6 +13,7 @@ const nav = [
   ["Acessórios", "/acessorios"],
   ["Maquiagem", "/maquiagem"],
   ["Cosméticos", "/cosmeticos"],
+  ["Calçados", "/calcados"],
 ] as const;
 
 function Counter({ value, testId }: { value: number; testId: string }) {
@@ -50,7 +51,7 @@ export function Header() {
     navigate(`/busca?q=${encodeURIComponent(q)}`);
   };
 
-  const iconBtn = "relative grid h-10 w-10 sm:h-11 sm:w-11 place-items-center text-cream transition-colors duration-200 hover:text-blossom";
+  const iconBtn = "relative grid h-11 w-11 place-items-center text-cream transition-colors duration-200 hover:text-blossom";
 
   return (
     <header className={`theme-dark sticky top-0 z-40 border-b transition-[background-color,border-color] duration-300 ${scrolled ? "border-[var(--line-dark)] bg-wine/85 backdrop-blur-xl" : "border-transparent bg-wine"}`} data-testid="site-header">
@@ -64,7 +65,7 @@ export function Header() {
         <Logo compact className="lg:hidden" />
         <Logo className="hidden lg:inline-flex" />
         <nav aria-label="Categorias" className="hidden lg:block">
-          <ul className="flex items-center gap-10">
+          <ul className="flex items-center gap-5 xl:gap-8">
             {nav.map(([label, href]) => (
               <li key={href}>
                 <NavLink to={href} data-testid={`nav-${href.slice(1)}`} className={({ isActive }) => `link-underline py-2 text-[0.8rem] uppercase tracking-[0.18em] text-cream/90 ${isActive ? "text-blossom after:scale-x-100" : ""}`}>
@@ -117,7 +118,7 @@ export function Header() {
             </nav>
             <ul className="mt-auto space-y-3 border-t border-[var(--line-dark)] pt-6 text-sm text-cream/80">
               {[["Favoritos", "/favoritos"], ["Sobre", "/sobre"], ["Trocas e devoluções", "/trocas-e-devolucoes"], ["Contato", "/contato"]].map(([label, href]) => (
-                <li key={href}><Link to={href} onClick={() => setMenuOpen(false)} className="block py-1">{label}</Link></li>
+                <li key={href}><Link to={href} onClick={() => setMenuOpen(false)} className="block py-2">{label}</Link></li>
               ))}
             </ul>
           </div>

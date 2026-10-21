@@ -1,6 +1,6 @@
 import { CherryIcon } from "../brand/CherryIcon";
 
-const words = ["Cherry Vibes", "Moda feminina e masculina", "Maquiagem", "Cosméticos", "Acessórios", "Noite de coquetel"];
+const words = ["Cherry Vibes", "Moda feminina e masculina", "Maquiagem", "Cosméticos", "Acessórios", "Calçados", "Noite de coquetel"];
 
 export function Marquee() {
   const row = [...words, ...words];

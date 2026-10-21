@@ -15,7 +15,7 @@ export default function SearchPage() {
 
   return (
     <>
-      <Seo title={q ? `Busca por “${q}”` : "Todas as peças"} description="Busque roupas, acessórios, maquiagem e cosméticos na Cherry Vibes." noIndex />
+      <Seo title={q ? `Busca por “${q}”` : "Todas as peças"} description="Busque roupas, acessórios, maquiagem, cosméticos e calçados na Cherry Vibes." noIndex />
       <PageIntro eyebrow="Busca" title={q ? `“${q}”` : "Todas as peças"} lead={`${products.length} ${products.length === 1 ? "resultado" : "resultados"}`} />
       <section className="bg-cream">
         <div className="container-x py-10 md:py-16">

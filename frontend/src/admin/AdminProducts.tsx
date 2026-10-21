@@ -7,7 +7,7 @@ import { formatBRL } from "../lib/format";
 import { ExampleBadge } from "../components/brand/ProductImage";
 import { AdminHeader, Phase2Button } from "./AdminLayout";
 
-const categoryName = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos" } as const;
+const categoryName = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos", calcados: "Calçados" } as const;
 
 export const phase2 = (what: string) => toast.info(`${what} será ativado na Fase 2.`, { description: "Nada foi gravado. Esta tela mostra apenas a interface." });
 

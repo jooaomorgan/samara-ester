@@ -33,6 +33,13 @@ export const categories: Category[] = [
     imageAlt: "Frasco de cosmético sobre fundo escuro",
     hasGenderFilter: false,
   },
+  {
+    slug: "calcados",
+    name: "Calçados",
+    tagline: "Tênis, sapatos e sandálias — seleção em preparação",
+    imageAlt: "Arte Cherry Vibes para a categoria de calçados em preparação",
+    hasGenderFilter: false,
+  },
 ];
 
 const colors: Record<string, string> = {
