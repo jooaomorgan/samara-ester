@@ -50,11 +50,13 @@ export function PrivacyPage() {
   return (
     <>
       <Seo title="Privacidade e LGPD" description="Como a Cherry Vibes trata dados pessoais, conforme a LGPD." />
-      <PageIntro eyebrow="Transparência" title="Privacidade e LGPD" lead="Nesta fase, a loja não coleta dados: favoritos e sacola ficam só no seu navegador." />
+      <PageIntro eyebrow="Transparência" title="Privacidade e LGPD" lead="Nesta fase, não há cadastro, pedidos, pagamentos ou envio de mensagens. Favoritos e sacola ficam no armazenamento local deste navegador." />
       <Prose>
         <Provisional />
         <h2>O que fica no seu aparelho</h2>
         <p>Favoritos e itens da sacola são guardados no armazenamento local do navegador e podem ser apagados por você a qualquer momento.</p>
+        <h2>Recursos de terceiros</h2>
+        <p>A vitrine carrega fontes pelo Google Fonts e imagens pelo Unsplash e Pexels. Ao solicitar esses arquivos, seu navegador compartilha dados técnicos da conexão com esses provedores, que podem tratá-los conforme as próprias políticas de privacidade.</p>
         <h2>O que virá na Fase 2</h2>
         <p>Dados de cadastro, endereço e pagamento serão tratados com base legal, finalidade clara e direitos de acesso, correção e exclusão, conforme a LGPD. O texto completo e o contato do encarregado serão publicados pela loja.</p>
       </Prose>
