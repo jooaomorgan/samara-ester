@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { resolveStoreImage } from "../../services/catalog";
 
 export function CherryMark({ className = "h-9 w-9" }: { className?: string }) {
   return (
@@ -12,14 +13,27 @@ export function CherryMark({ className = "h-9 w-9" }: { className?: string }) {
   );
 }
 
-export function Logo({ compact = false, className = "" }: { compact?: boolean; className?: string }) {
+interface LogoProps {
+  compact?: boolean;
+  className?: string;
+  name?: string;
+  slogan?: string;
+  image?: string;
+}
+
+export function Logo({ compact = false, className = "", name = "Cherry Vibes", slogan = "Moda feminina e masculina", image }: LogoProps) {
+  const logoImage = resolveStoreImage(image);
+
   return (
-    <Link to="/" className={`inline-flex items-center gap-3 ${className}`} data-testid="logo-link" aria-label="Cherry Vibes — página inicial">
-      <CherryMark className={`h-9 w-9 shrink-0 ${compact ? "hidden sm:block" : ""}`} />
+    <Link to="/" className={"inline-flex items-center gap-3 " + className} data-testid="logo-link" aria-label={name + " — página inicial"}>
+      {logoImage
+        ? <img src={logoImage} alt="" className={"max-h-10 max-w-32 object-contain " + (compact ? "hidden sm:block" : "")} />
+        : <CherryMark className={"h-9 w-9 shrink-0 " + (compact ? "hidden sm:block" : "")} />}
       <span className="flex flex-col leading-none">
-        <span className={`whitespace-nowrap font-serif tracking-[0.08em] font-light ${compact ? "text-xl" : "text-[1.45rem]"}`}>Cherry Vibes</span>
-        {!compact && <span className="eyebrow mt-1 text-[0.55rem] opacity-80">Moda feminina e masculina</span>}
+        <span className={"whitespace-nowrap font-serif tracking-[0.08em] font-light " + (compact ? "text-xl" : "text-[1.45rem]")}>{name || "Cherry Vibes"}</span>
+        {!compact && <span className="eyebrow mt-1 text-[0.55rem] opacity-80">{slogan || "Moda feminina e masculina"}</span>}
       </span>
     </Link>
   );
 }
+

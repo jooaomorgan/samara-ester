@@ -1,4 +1,5 @@
 import { Menu, Search, ShoppingBag, X } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetTitle } from "../ui/sheet";
@@ -7,14 +8,8 @@ import { CherryIcon } from "../brand/CherryIcon";
 import { useCart } from "../../store/cart";
 import { useFavorites } from "../../store/favorites";
 import { CartDrawer } from "./CartDrawer";
-
-const nav = [
-  ["Roupas", "/roupas"],
-  ["Acessórios", "/acessorios"],
-  ["Maquiagem", "/maquiagem"],
-  ["Cosméticos", "/cosmeticos"],
-  ["Calçados", "/calcados"],
-] as const;
+import { catalogService } from "../../services/catalog";
+import { useStoreSettings } from "../../hooks/useStoreSettings";
 
 function Counter({ value, testId }: { value: number; testId: string }) {
   if (!value) return null;
@@ -34,6 +29,9 @@ export function Header() {
   const { count } = useCart();
   const favorites = useFavorites();
   const navigate = useNavigate();
+  const { data: categories = [] } = useQuery({ queryKey: ["categories"], queryFn: catalogService.listCategories });
+  const { data: settings } = useStoreSettings();
+  const nav = categories.map((category) => [category.name, "/" + category.slug] as const);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -62,8 +60,8 @@ export function Header() {
             <Menu className="h-5 w-5" strokeWidth={1.5} />
           </button>
         </div>
-        <Logo compact className="lg:hidden" />
-        <Logo className="hidden lg:inline-flex" />
+        <Logo compact className="lg:hidden" name={settings?.loja.nome} slogan={settings?.loja.slogan} image={settings?.loja.logo} />
+        <Logo className="hidden lg:inline-flex" name={settings?.loja.nome} slogan={settings?.loja.slogan} image={settings?.loja.logo} />
         <nav aria-label="Categorias" className="hidden lg:block">
           <ul className="flex items-center gap-5 xl:gap-8">
             {nav.map(([label, href]) => (

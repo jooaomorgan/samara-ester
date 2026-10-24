@@ -7,7 +7,7 @@ import { formatBRL } from "../lib/format";
 import { ExampleBadge } from "../components/brand/ProductImage";
 import { AdminHeader, Phase2Button } from "./AdminLayout";
 
-const categoryName = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos", calcados: "Calçados" } as const;
+const categoryName: Record<string, string> = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos", calcados: "Calçados" };
 
 export const phase2 = (what: string) => toast.info(`${what} será ativado na Fase 2.`, { description: "Nada foi gravado. Esta tela mostra apenas a interface." });
 
@@ -36,7 +36,7 @@ export default function AdminProducts() {
             {list.map((p) => (
               <tr key={p.id} data-testid={`admin-product-row-${p.id}`}>
                 <td className="px-4 py-3"><span className="flex items-center gap-2">{p.name}{p.isExample && <ExampleBadge />}</span></td>
-                <td className="px-4 py-3 text-ink-muted">{categoryName[p.category]}</td>
+                <td className="px-4 py-3 text-ink-muted">{categoryName[p.category] || p.category}</td>
                 <td className="px-4 py-3">{formatBRL(p.price)}</td>
                 <td className="px-4 py-3">{p.variants.length}</td>
                 <td className="px-4 py-3">{p.variants.reduce((n, v) => n + v.stock, 0)}</td>
@@ -53,3 +53,4 @@ export default function AdminProducts() {
     </>
   );
 }
+
