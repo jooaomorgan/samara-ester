@@ -16,7 +16,8 @@ export default function CategoryPage() {
   const { filters, activeCount, clear } = useCatalogFilters();
   const slug = isValidCategory(categoria) ? categoria : undefined;
 
-  const { data: category } = useQuery({ queryKey: ["category", slug], queryFn: () => catalogService.getCategory(slug!), enabled: !!slug });
+  const categoryQuery = useQuery({ queryKey: ["category", slug], queryFn: () => catalogService.getCategory(slug!), enabled: !!slug });
+  const { data: category, isLoading: categoryLoading } = categoryQuery;
   const { data: facets } = useQuery({ queryKey: ["facets", slug], queryFn: () => catalogService.getFacets(slug), enabled: !!slug });
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products", slug, filters],
@@ -25,7 +26,9 @@ export default function CategoryPage() {
   });
 
   if (!slug) return <Navigate to="/404" replace />;
-  if (!category || !facets) return null;
+  if (categoryLoading) return <div className="container-x py-24 text-sm text-ink-muted">Carregando categoria…</div>;
+  if (!category) return <Navigate to="/404" replace />;
+  if (!facets) return <div className="container-x py-24 text-sm text-ink-muted">Carregando catálogo…</div>;
 
   const showCatalogControls = facets.priceRange[1] > 0;
   const panel = showCatalogControls ? <FilterPanel facets={facets} showGender={category.hasGenderFilter} /> : null;

@@ -15,7 +15,7 @@ import { catalogService } from "../services/catalog";
 import { formatBRL } from "../lib/format";
 import type { OptionKey, Product } from "../types/catalog";
 
-const categoryName: Record<Product["category"], string> = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos", calcados: "Calçados" };
+const categoryName: Record<string, string> = { roupas: "Roupas", acessorios: "Acessórios", maquiagem: "Maquiagem", cosmeticos: "Cosméticos", calcados: "Calçados" };
 
 function ProductView({ product }: { product: Product }) {
   const reduce = useReducedMotion();
@@ -45,7 +45,6 @@ function ProductView({ product }: { product: Product }) {
       <Seo
         title={product.name}
         description={product.description}
-        jsonLd={{ "@context": "https://schema.org", "@type": "Product", name: product.name, description: product.description, category: categoryName[product.category], offers: { "@type": "Offer", priceCurrency: "BRL", price: product.price, availability: variant && variant.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/PreOrder" } }}
       />
       <article className="bg-cream">
         <div className="container-x py-6 md:py-12">
@@ -53,7 +52,7 @@ function ProductView({ product }: { product: Product }) {
             <ol className="flex flex-wrap gap-2">
               <li><Link to="/" className="link-underline">Início</Link></li>
               <li aria-hidden="true">/</li>
-              <li><Link to={`/${product.category}`} className="link-underline" data-testid="breadcrumb-category">{categoryName[product.category]}</Link></li>
+              <li><Link to={`/${product.category}`} className="link-underline" data-testid="breadcrumb-category">{categoryName[product.category] || product.category}</Link></li>
               <li aria-hidden="true">/</li>
               <li aria-current="page" className="text-ink">{product.name}</li>
             </ol>
@@ -73,7 +72,7 @@ function ProductView({ product }: { product: Product }) {
 
             <div className="lg:col-span-5">
               <div className="lg:sticky lg:top-28">
-                <p className="eyebrow text-ink-muted">{categoryName[product.category]}{product.gender ? ` · ${product.gender}` : ""}</p>
+                <p className="eyebrow text-ink-muted">{categoryName[product.category] || product.category}{product.gender ? ` · ${product.gender}` : ""}</p>
                 <h1 className="display mt-3 text-4xl sm:text-5xl" data-testid="product-title">{product.name}</h1>
                 <p className="mt-4 font-serif text-3xl" data-testid="product-price">{formatBRL(product.price)}</p>
                 <p className="mt-6 text-sm text-ink-muted md:text-base">{product.description}</p>
@@ -83,7 +82,6 @@ function ProductView({ product }: { product: Product }) {
                 </div>
 
                 <p className="mt-6 text-xs text-ink-muted" aria-live="polite" data-testid="stock-status">
-                  {variant ? (variant.stock > 0 ? `${variant.stock} em estoque (dado de exemplo)` : "Esgotado nesta combinação") : "Escolha as opções para ver o estoque"}
                 </p>
 
                 {error && <p role="alert" className="mt-3 border-l-2 border-cherry pl-3 text-sm text-cherry" data-testid="add-to-cart-error">{error}</p>}
@@ -124,3 +122,4 @@ export default function ProductPage() {
   if (!product) return <Navigate to="/404" replace />;
   return <ProductView key={product.id} product={product} />;
 }
+

@@ -37,13 +37,13 @@ export function CategoryDoors({ categories }: { categories: Category[] }) {
                 ) : (
                   <div role="img" aria-label={c.imageAlt} className="relative aspect-[3/4] overflow-hidden bg-[radial-gradient(ellipse_at_80%_20%,var(--wine-soft),var(--wine)_65%)]">
                     <CherryBranch aria-hidden="true" className="absolute -right-[18%] top-[8%] h-[90%] w-[120%] text-blossom/60" />
-                    <span className="eyebrow absolute left-4 top-5 text-cream/70">Em preparação</span>
+                    <span className="eyebrow absolute left-4 top-5 text-cream/70">Ver coleção</span>
                   </div>
                 )}
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,var(--wine)_0%,transparent_55%)]" />
                 <div className="absolute inset-x-0 bottom-0 p-4 text-cream md:p-6">
                   <h3 className="font-serif text-2xl font-light md:text-3xl">{c.name}</h3>
-                  <p className="mt-1 text-xs text-cream/70">{c.tagline}</p>
+                  <p className="mt-1 text-xs text-cream/70">{c.tagline || "Ver coleção"}</p>
                 </div>
               </Link>
             </li>

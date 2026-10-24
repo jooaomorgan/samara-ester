@@ -1,4 +1,4 @@
-export type CategorySlug = "roupas" | "acessorios" | "maquiagem" | "cosmeticos" | "calcados";
+export type CategorySlug = string;
 export type Gender = "feminino" | "masculino" | "unissex";
 export type OptionKey = "tamanho" | "cor" | "tom" | "volume";
 export type SortKey = "novidades" | "preco-asc" | "preco-desc" | "nome";

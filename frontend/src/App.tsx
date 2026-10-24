@@ -21,6 +21,25 @@ const AdminStock = lazy(() => import("./admin/AdminOperations").then((m) => ({ d
 const AdminOrders = lazy(() => import("./admin/AdminOperations").then((m) => ({ default: m.AdminOrders })));
 const AdminShipping = lazy(() => import("./admin/AdminOperations").then((m) => ({ default: m.AdminShipping })));
 
+const ADMIN_URL = (process.env.REACT_APP_ADMIN_URL || "").trim();
+
+function AdminPortalEntry() {
+  return (
+    <main className="theme-dark flex min-h-screen items-center justify-center px-6 py-16 text-cream">
+      <section className="max-w-lg border border-cream/20 bg-cream/5 p-8 md:p-12">
+        <p className="eyebrow text-blossom">Cherry Vibes</p>
+        <h1 className="display mt-3 text-4xl">Painel da loja</h1>
+        <p className="mt-4 text-sm text-cream/75">A administração funciona no painel conectado à API da loja.</p>
+        {ADMIN_URL ? (
+          <a className="btn btn-cherry mt-8" href={ADMIN_URL} data-testid="admin-portal-link">Abrir painel administrativo</a>
+        ) : (
+          <p className="mt-8 border-l-2 border-blossom pl-4 text-sm text-cream/75" role="status" data-testid="admin-portal-unconfigured">O endereço do painel será liberado quando REACT_APP_ADMIN_URL for configurado.</p>
+        )}
+        <a className="link-underline mt-8 block text-sm" href="/">Voltar para a loja</a>
+      </section>
+    </main>
+  );
+}
 export default function App() {
   return (
     <FavoritesProvider>
@@ -43,15 +62,19 @@ export default function App() {
                 <Route path="404" element={<NotFoundPage />} />
                 <Route path="*" element={<Navigate to="/404" replace />} />
               </Route>
-              <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<AdminOverview />} />
-                <Route path="produtos" element={<AdminProducts />} />
-                <Route path="produtos/novo" element={<AdminProductForm />} />
-                <Route path="produtos/:id" element={<AdminProductForm />} />
-                <Route path="estoque" element={<AdminStock />} />
-                <Route path="pedidos" element={<AdminOrders />} />
-                <Route path="frete" element={<AdminShipping />} />
-              </Route>
+              {(process.env.NODE_ENV === "production" || Boolean(ADMIN_URL)) ? (
+                <Route path="/admin/*" element={<AdminPortalEntry />} />
+              ) : (
+                <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<AdminOverview />} />
+                  <Route path="produtos" element={<AdminProducts />} />
+                  <Route path="produtos/novo" element={<AdminProductForm />} />
+                  <Route path="produtos/:id" element={<AdminProductForm />} />
+                  <Route path="estoque" element={<AdminStock />} />
+                  <Route path="pedidos" element={<AdminOrders />} />
+                  <Route path="frete" element={<AdminShipping />} />
+                </Route>
+              )}
             </Routes>
           </Suspense>
           <Toaster position="bottom-center" toastOptions={{ className: "font-sans" }} />
@@ -60,3 +83,5 @@ export default function App() {
     </FavoritesProvider>
   );
 }
+
+
